@@ -160,8 +160,7 @@ else{
 
 // #region 伺服器啟動
 const server = http.createServer(requestListener);// 只要有任何使用者（瀏覽器、Postman 等）造訪或發送請求到這個網址，這個函式(requestListener)就必定會被觸發執行一次。
-server.listen(3005);// 讓這個伺服器開始在後台監聽本機電腦的 3005 連接埠（Port），等待使用者的連線
-//127.0.0.1:3005 或 localhost:3005 ，當使用者在瀏覽器輸入這個網址時，就會觸發 requestListener 裡面的邏輯，回傳 res.write 給使用者看
+server.listen(process.env.PORT || 3005);// 伺服器開始監聽指定的 port，這裡使用 process.env.PORT || 3005，表示如果有設定環境變數 PORT，就使用該值，否則就使用 3005。這樣可以讓伺服器在不同的環境下運行，例如在本地開發環境使用 3005，而在部署到雲端平台時使用平台提供的 port。
 // #endregion
 
 
