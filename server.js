@@ -10,9 +10,20 @@
 //📦 404 Not Found - 路由不存在
 //📦 伺服器啟動 - 服務器初始化
 
-const http = require('http'); // 引入 Node.js 內建的 'http' 模組，讓我們有能力建立伺服器並處理網路請求
-const { v4: uuidv4 } = require('uuid'); // 引入 'uuid' 外部模組：並從中取出 v4 方法，重新命名為 uuidv4，這個方法用來生成獨一無二的識別碼（UUID）
-const errorHandle = require('./errorHandle'); // 引入自己寫的模組
+//遇到的問題：
+// package.json 中缺少 "type": "module"，導致無法使用 ES6 模組語法（import/export）
+// Node.js 模組演進：以前是用 require() (CommonJS)，現在主流是 import (ESM)。
+// uuid 套件更新：uuid 套件在最新的版本中已經全面轉向使用 ESM 規範，所以它不再允許舊的 require() 方式來載入。
+
+import http from 'http'; // 引入 Node.js 內建的 'http' 模組，讓我們有能力建立伺服器並處理網路請求
+import { v4 as uuidv4 } from 'uuid'; // 引入 'uuid' 外部模組：並從中取出 v4 方法，重新命名為 uuidv4，這個方法用來生成獨一無二的識別碼（UUID）
+import errorHandle from './errorHandle.js'; // 引入自己的模組，必須加上 .js
+
+//* 以下是CommonJS 模組語法，與 ES6 模組語法不兼容，應該改成 import 語法 *//
+//const http = require('http'); 
+//const { v4: uuidv4 } = require('uuid'); 
+//const errorHandle = require('./errorHandle');
+
 const todos = []; // 建立一個空陣列 todos，用來存放待辦事項（To-Do items）。這個陣列會在伺服器運行期間保持在記憶體中，當使用者新增或刪除待辦事項時，這個陣列會被更新。
 
 // #region HTTP Headers 設定
