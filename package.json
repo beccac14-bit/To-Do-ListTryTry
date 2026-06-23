@@ -4,11 +4,9 @@
   "type": "module",
   "dependencies": {
     "init": "^0.1.2",
-    "uuid": "^14.0.0"
+    "uuid": "^14.0.1"
   },
-  "engines":{
-    "node": "18.17.1" 
+  "engines": {
+    "node": ">=18.17.1"
   }
 }
-
-
