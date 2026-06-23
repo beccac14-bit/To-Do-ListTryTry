@@ -48,7 +48,7 @@ const requestListener = (req, res) => {
                     console.log("進了 else，有title ");
                 }
             } catch (error) {
-                console.log("進了 catch，error 是:", error.message.error.name.error.stack);
+                console.log("修改後：進了 catch，error 是:", error.message);
                 errorHandle(res);
             }
 
