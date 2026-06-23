@@ -33,6 +33,7 @@ const requestListener = (req, res) => {
         } else if (req.url === "/todos" && req.method === "POST") {
             try {
                 const title = JSON.parse(body).title;
+                
                 if (title !== undefined && title.trim() !== "") {
                     const todo = {
                         "title": title,
@@ -44,8 +45,10 @@ const requestListener = (req, res) => {
                     res.end();
                 } else {
                     errorHandle(res);
+                    console.log("進了 else，有title ");
                 }
             } catch (error) {
+                console.log("進了 catch，error 是:", error.message);
                 errorHandle(res);
             }
 
